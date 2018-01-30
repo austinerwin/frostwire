@@ -1,6 +1,6 @@
 /*
  * Created by Angel Leon (@gubatron), Alden Torres (aldenml)
- * Copyright (c) 2011-2015, FrostWire(R). All rights reserved.
+ * Copyright (c) 2011-2018, FrostWire(R). All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,6 @@ import com.limegroup.gnutella.gui.search.SearchMediator;
 import com.limegroup.gnutella.gui.tables.LimeJTable;
 import com.limegroup.gnutella.settings.ApplicationSettings;
 import org.limewire.util.OSUtils;
-import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -389,8 +388,6 @@ public final class ThemeMediator {
     private static void applySkinSettings() {
         applyCommonSkinUI();
 
-        fixAAFontSettings();
-
         UIManager.put("Tree.leafIcon", UIManager.getIcon("Tree.closedIcon"));
 
         // remove split pane borders
@@ -407,13 +404,6 @@ public final class ThemeMediator {
         FontUIResource bold = new FontUIResource(normal.getName(), Font.BOLD, normal.getSize());
         UIManager.put("Table.font.bold", bold);
         UIManager.put("Tree.rowHeight", 0);
-    }
-
-    private static void fixAAFontSettings() {
-        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-        boolean lafCond = SwingUtilities2.isLocalDisplay();
-        Object aaTextInfo = SwingUtilities2.AATextInfo.getAATextInfo(lafCond);
-        defaults.put(SwingUtilities2.AA_TEXT_PROPERTY_KEY, aaTextInfo);
     }
 
     // windows font policy http://msdn.microsoft.com/en-us/library/windows/desktop/aa511282.aspx
